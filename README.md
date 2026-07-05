@@ -4,7 +4,9 @@ UE5 战斗原型项目 | 技术策划作品集
 
 ## 项目简介
 
-本项目是基于 Unreal Engine 5 的 Gameplay Ability System（GAS）搭建的第三人称 Boss 战原型。涵盖技能系统、行为树 AI、DataTable 数据驱动、UI 框架等模块，展示战斗系统设计、工具链搭建和设计文档撰写方面的综合能力。
+本项目是基于 Unreal Engine 5 Gameplay Ability System（GAS）搭建的第三人称 Boss 战斗原型，核心目标是验证一套以“技能系统解耦 + AI行为驱动 + 数据驱动配置”为核心的战斗系统设计方法。
+
+项目围绕 Boss 战斗展开，实现技能系统、行为树 AI、DataTable 配置体系与基础 UI 框架，用于表达战斗系统设计思路与工程落地能力的结合。
 
 ## 技术栈
 
