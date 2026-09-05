@@ -1,7 +1,7 @@
 # RPGBattlePrototype - 迭代目标与结算
 
-> 版本：V1.2（2026.08.21）
-> 关联：DevLog.md（Day 1-21）| DevLog_V1.1.md | 项目开发总结.md
+> 版本：V1.3（2026.09.05）
+> 关联：DevLog.md（Day 1-21）| DevLog_V1.1.md | 项目开发总结.md| DevLog_V2.0.md
 
 
 ## 一、试玩反馈（8.16）
@@ -81,7 +81,6 @@ V1.1 阶段全部目标已完成：
 
 **V1.1 版本已冻结。** 后续迭代方向见第五节。
 
-
 ## 五、后续迭代方向（9 月起）
 
 | 编号 | 方向                      | 说明                                                         |
@@ -89,12 +88,13 @@ V1.1 阶段全部目标已完成：
 |  T3  | Ability 与动画解耦        | OnCanceled / OnInterrupted 做 Tag 清理，替代 Montage End 依赖 |
 |  T4  | 统一 Damage Pipeline      | 命中检测与伤害处理分流，Player 和 Boss 共用后端              |
 |  T5  | SkillData 扩展 + 全局配置 | DataTable 扩展至 AI 距离、碰撞参数、资源引用；全局参数集中管理 |
-|  T6  | AI Debug 可视化           | 屏幕显示距离、阶段、候选技能、CD 状态、当前 BT 状态          |
-|  T7  | 权重随机                  | 等概率随机换成 Weighted Random                               |
-|  T8  | 性能分析                  | Unreal Insights + Stat 命令，输出报告                        |
-|  T9  | C++ 重构                  | 伤害管线、状态管理、碰撞过滤迁移至 C++                       |
-| T10  | 自动化测试                | Functional Test 覆盖技能激活/扣费/CD/转阶段/重生目标重获     |
+|  T6  | UI 数据绑定迁移到 C++     | 用 GetGameplayAttributeValueChangeDelegate 在 C++ 层实现 UI 绑定，蓝图只做表现层 |
+|  T7  | AI Debug 可视化           | 屏幕显示距离、阶段、候选技能、CD 状态、当前 BT 状态          |
+|  T8  | 权重随机                  | 等概率随机换成 Weighted Random                               |
+|  T9  | 性能分析                  | Unreal Insights + Stat 命令，输出报告                        |
+| T10  | C++ 重构                  | 伤害管线、状态管理、碰撞过滤迁移至 C++（只为统一管理和复用性而重构） |
+| T11  | 自动化测试                | Functional Test 覆盖技能激活/扣费/CD/转阶段/重生目标重获     |
 
 ---
 
-*— RPGBattlePrototype NEXT_STEPS V1.2, 2026.08.21*
+*— RPGBattlePrototype NEXT_STEPS V1.3, 2026.09.05*
