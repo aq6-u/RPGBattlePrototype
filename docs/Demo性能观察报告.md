@@ -122,8 +122,6 @@ GPU 侧热点集中在：
 | Lumen 全局光照 |   ~60%   | ScreenProbeGather + SceneLighting + Reflections |
 | Postprocessing |   ~30%   | 含后处理各 Pass                                 |
 
-> 注：Graphics 与 Compute 队列存在并行执行，上述占比为 GPU 整体时间中的估算比例，非简单相加。
-
 两者合计占 GPU 总时间约 **70-80%**。对于 1v1 战斗原型而言，Lumen 与完整后处理管线属于过度配置，存在明显的优化空间。
 
 
