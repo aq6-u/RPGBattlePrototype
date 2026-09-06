@@ -53,3 +53,41 @@ Cost 校验也是类似的情况——GA 正常能激活，但激活时没有检
 V1.0 的阶段目标是让功能跑起来，V2.0 更多是在补那些“跑起来之后才会暴露”的边界情况。状态是否在任何结束路径下都能正确清理、UI 是否在正确时机拿到正确的初始值、非法输入是否在入口就被拦截——这些都是功能本身之外的细节，但堆在一起决定了系统是否可靠。
 
 > **开发耗时**：约 5 h
+
+---
+
+## Day 2（2026.09.06）
+
+### 今日完成
+
+#### 1. T4：统一 Damage Pipeline
+
+- 在 Boss 蓝图中创建统一事件 BossDamage，通过 SkillID 查 DataTable 读取 Damage、CameraShake、HitSound
+- 各 Boss 技能 ANS 移除原有的扣血、音效、震动逻辑，改为命中后调用 BossDamage
+- SkillID 由当前执行技能的 GA 提供，ANS 在命中后将其传入 BossDamage 事件
+- ANS 只负责碰撞检测和事件调用，不存储任何技能相关数据
+- 复用现有 DataTable 结构，未新增额外结构体或函数库
+
+#### 2. T5：SkillData 扩展 + DDA 接口预留
+
+- 在 DataTable 中新增 CameraShake、HitSound 字段，各技能通过 SkillID 读取对应配置
+- 新增 GetDifficultyMultiplier 函数，在 BossDamage 伤害计算时乘入动态系数
+- 在 GameInstance 中存储 PlayerDeathCount，Player 死亡时累加，用于驱动 DDA 逻辑
+- 系数根据 Player 死亡次数动态变化：0 次为 1.2，1-2 次为 1.0，3-4 次为 0.8，4 次以上为 0.6
+
+#### 3. T5 已决定不迁移项
+
+- 碰撞参数（Trace 半径/距离/Box 尺寸）已决定不迁移至 DT，保留在各自的 ANS 中。各技能检测形状差异较大（Box / Sphere），保留独立配置更灵活。
+- AI 距离阈值（近/中/远）已决定不迁移至 DT，保留在行为树中的硬编码值。当前距离区间划分已能满足设计需求，暂不配置。
+
+### 今日思考
+
+今天收掉了 T4 和 T5 中主要的数据扩展与 DDA 接口部分。Boss 技能的伤害逻辑从各 ANS 拆出来后，统一放到了 BossDamage 中。ANS 不再持有任何技能数据，只负责命中检测，然后从当前执行的 GA 读取 SkillID，上报给 Boss 蓝图。扣血、音效、震动全由 Boss 蓝图统一处理，数据来源是 DataTable。
+
+把 SkillID 放在 GA 里而不是 ANS 里，逻辑上更合理——技能的数据归属应该在 GA 层面，ANS 只负责命中检测本身。新增技能时，在 DT 配好数据，然后在新的 GA 中设置 SkillID 即可。如果新增技能的碰撞逻辑与已有技能相同，也可以复用现有的 ANS，SkillID 由 GA 传入即可。
+
+DDA 接口也一并做完了。把死亡次数记录到 GameInstance 后，Boss 伤害会根据玩家死亡次数动态调整，走的宽恕式方向——死得越多，难度越低。
+
+DataTable 里补了震动和音效字段后，技能配置基本完整。碰撞参数和 AI 距离阈值经评估后已决定不迁移至 DT，各自保留在 ANS 和行为树中，T5 不再继续推进。
+
+> **开发耗时**：约 3 h
