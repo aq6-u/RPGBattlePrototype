@@ -73,6 +73,7 @@
 | [开发日志（DevLog_V1.1）](./docs/DevLog_V1.1.md) | V1.1 阶段 Day 1-4 迭代修复记录         |
 | [开发日志（DevLog_V2.0）](./docs/DevLog_V2.0.md) | V2.0 阶段每日开发记录                  |
 | [项目开发总结](./docs/项目开发总结.md)           | V1.1 完整总结，含设计意图说明          |
+| [性能观察报告](./docs/Demo性能观察报告.md)       | V2.0阶段 Demo 的性能观察记录           |
 | [迭代目标与结算](./docs/NEXT_STEPS.md)           | 基于 8.16 试玩反馈的迭代结算与后续计划 |
 | [RPG 设计草案](./docs/RPG_Design_Draft.md)       | 项目设计规格与系统架构（draft_v2.0）   |
 
