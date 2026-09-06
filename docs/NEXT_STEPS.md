@@ -1,7 +1,7 @@
 # RPGBattlePrototype - 迭代目标与结算
 
-> 版本：V1.3（2026.09.05）
-> 关联：DevLog.md（Day 1-21）| DevLog_V1.1.md | 项目开发总结.md| DevLog_V2.0.md
+> 版本：V1.4（2026.09.06）
+> 关联：DevLog.md（Day 1-21）| DevLog_V1.1.md | 项目开发总结.md | DevLog_V2.0.md
 
 
 ## 一、试玩反馈（8.16）
@@ -79,22 +79,33 @@ V1.1 阶段全部目标已完成：
 - [x] 打包分辨率验证（分辨率与 UI 正常）
 - [x] 演示视频录制（已上传）
 
-**V1.1 版本已冻结。** 后续迭代方向见第五节。
+**V1.1 版本已冻结。**
 
-## 五、后续迭代方向（9 月起）
 
-| 编号 | 方向                      | 说明                                                         |
-| :--: | :------------------------ | :----------------------------------------------------------- |
-|  T3  | Ability 与动画解耦        | OnCanceled / OnInterrupted 做 Tag 清理，替代 Montage End 依赖 |
-|  T4  | 统一 Damage Pipeline      | 命中检测与伤害处理分流，Player 和 Boss 共用后端              |
-|  T5  | SkillData 扩展 + 全局配置 | DataTable 扩展至 AI 距离、碰撞参数、资源引用；全局参数集中管理 |
-|  T6  | UI 数据绑定迁移到 C++     | 用 GetGameplayAttributeValueChangeDelegate 在 C++ 层实现 UI 绑定，蓝图只做表现层 |
-|  T7  | AI Debug 可视化           | 屏幕显示距离、阶段、候选技能、CD 状态、当前 BT 状态          |
-|  T8  | 权重随机                  | 等概率随机换成 Weighted Random                               |
-|  T9  | 性能分析                  | Unreal Insights + Stat 命令，输出报告                        |
-| T10  | C++ 重构                  | 伤害管线、状态管理、碰撞过滤迁移至 C++（只为统一管理和复用性而重构） |
-| T11  | 自动化测试                | Functional Test 覆盖技能激活/扣费/CD/转阶段/重生目标重获     |
+## 五、V2.0 迭代结果（9.05 - 9.06）
+
+V2.0 重构阶段已完成以下内容：
+
+| 编号 | 方向                      |   状态   | 说明                                                         |
+| :--: | :------------------------ | :------: | :----------------------------------------------------------- |
+|  T3  | Ability 与动画解耦        |  已完成  | Tag 清理迁移至 OnCanceled / OnInterrupted                    |
+|  T4  | 统一 Damage Pipeline      |  已完成  | Boss 蓝图统一事件，各技能 ANS 只负责检测                     |
+|  T5  | SkillData 扩展 + DDA 预留 | 部分完成 | DataTable 新增 CameraShake / HitSound 字段；DDA 已接入实际数值（死亡次数驱动伤害系数）；碰撞参数与 AI 距离阈值已决定不迁移 |
+|  T6  | UI 数据绑定迁移到 C++     |  已完成  | 通过 GetGameplayAttributeValueChangeDelegate 驱动 UI         |
+
+
+## 六、后续方向评估（已关闭）
+
+以下方向在 V2.0 阶段已评估并关闭：
+
+| 编号 | 方向            |  状态  | 说明                               |
+| :--: | :-------------- | :----: | :--------------------------------- |
+|  T7  | AI Debug 可视化 |  不做  | 不纳入本次重构范围                 |
+|  T8  | 权重随机        |  不做  | 有 CD 限制下对战斗体验影响有限     |
+|  T9  | 性能分析        | 已完成 | stat 命令测试 + 性能观察报告已输出 |
+| T10  | C++ 重构        |  不做  | 蓝图方案已稳定，不额外迁移         |
+| T11  | 自动化测试      |  不做  | 个人项目不需要                     |
 
 ---
 
-*— RPGBattlePrototype NEXT_STEPS V1.3, 2026.09.05*
+*— RPGBattlePrototype NEXT_STEPS V1.4, 2026.09.06*
