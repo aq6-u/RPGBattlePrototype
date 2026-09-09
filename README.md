@@ -60,7 +60,7 @@
 
 ## 实机演示
 
-- **B站**：[V1.1 演示视频（在线）（等待上传）]()
+- **B站**：[V1.1 演示视频（在线）](https://www.bilibili.com/video/BV1knYx68E5M/)
 - **GitHub Release**：[V1.1 演示视频（下载）](https://github.com/aq6-u/RPGBattlePrototype/releases)
 - **阿里云盘**：[V1.1 演示视频（下载）](https://www.alipan.com/s/NcWjmQRJD9r)
 
