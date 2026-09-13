@@ -50,3 +50,30 @@
 后续将继续学习 Content Browser 自定义菜单、Delegate、Editor Tab、Slate 与 SListView，并逐步将这些能力应用到 DataTable 数据校验工具中。
 
 > **开发耗时**：约 3 h
+
+---
+
+## Day 3（2026.09.13）
+
+### 今日完成
+
+继续学习 Quick Asset Actions，完成消息提示封装、资产前缀自动添加、未使用资产删除与重定向器修复等功能：
+
+- 将 ShowMsgDialog（模态弹窗）与 ShowNotifyInfo（右下角通知）统一封装到 DebugHeader.h，用于替代之前分散在 .cpp 中的临时提示逻辑，并根据操作结果区分两种提示方式。
+- 使用 TMap<UClass*, FString> 建立资产类型与命名前缀的映射关系，遍历选中的资产，根据资产类型自动匹配前缀并调用 RenameAsset 完成批量重命名。
+- 处理材质实例的特殊命名规则：重命名前先移除原有的 M_ 前缀和 _Inst 后缀，再添加 MI_ 前缀，避免出现前缀重复或命名不规范的问题。
+- 使用 UEditorAssetLibrary::FindPackageReferencersForAsset 检查资产引用情况，将没有引用的资产加入待删除列表，再通过 ObjectTools::DeleteAssets 进行批量删除。
+- 使用 Asset Registry 收集 /Game 路径下的 UObjectRedirector，通过 FAssetToolsModule::FixupReferencers 批量修复重定向器引用，并在删除未使用资产前先完成重定向器修复。
+- 根据新增功能补充 Build.cs 模块依赖，加入 UnrealEd 与 AssetTools，解决 ObjectTools、重定向器修复等相关接口的编译依赖问题。
+
+### 今日思考
+
+今天继续学习 Quick Asset Actions，开始接触到一些比“实现功能”更偏向编辑器工具实际使用体验和资产工作流的问题。
+
+例如消息提示、批量重命名、未使用资产清理这些功能，本身实现起来并不算特别复杂，但真正做成编辑器工具后，需要考虑不同操作的使用场景，以及资产之间的引用关系。尤其是删除资产和修复重定向器的部分，让我进一步认识到 UE 编辑器中的资产并不是简单的文件，修改和删除操作都需要考虑 Asset Registry、引用关系以及 Package 等底层机制。
+
+材质实例的命名处理也是一个比较典型的细节。不同类型资产可能有各自约定俗成的命名规则，因此批量处理不能简单地对所有资产套用同一套字符串逻辑，而需要根据资产类型做针对性处理。
+
+经过这几天的学习，Quick Asset Actions 部分基本完成。相比 Day 1 的 EditorUtilityWidget 原型，现在已经开始能够通过 C++ 插件直接介入 UE 的资产工作流。接下来将进入 Content Browser 自定义菜单的学习，让 DataTable 校验工具能够从“独立窗口中的按钮”进一步转变为“选中 DataTable 后直接通过右键菜单执行”，逐步向真正可用的编辑器工具过渡。
+
+> **开发耗时**：约 4 h
