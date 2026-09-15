@@ -77,3 +77,41 @@
 经过这几天的学习，Quick Asset Actions 部分基本完成。相比 Day 1 的 EditorUtilityWidget 原型，现在已经开始能够通过 C++ 插件直接介入 UE 的资产工作流。接下来将进入 Content Browser 自定义菜单的学习，让 DataTable 校验工具能够从“独立窗口中的按钮”进一步转变为“选中 DataTable 后直接通过右键菜单执行”，逐步向真正可用的编辑器工具过渡。
 
 > **开发耗时**：约 4 h
+
+---
+
+## Day 4（2026.09.15）
+
+### 今日完成
+
+继续完善 Editor Tool 的 Content Browser 快捷菜单功能，实现无用资产搜索、Redirector 修复以及空文件夹清理。
+
+- **Search And Delete Unused Assets**
+  - 获取 Content Browser 当前选中的文件夹路径
+  - 使用 UEditorAssetLibrary::ListAssets 递归搜索文件夹下的资产
+  - 排除 Developers、Collections、ExternalActors**、**ExternalObjects 等特殊目录
+  - 通过 FindPackageReferencersForAsset 查询资产引用关系，筛选无引用资产
+  - 使用 ObjectTools::DeleteAssets 批量删除确认后的无用资产
+- **Fix Up Redirectors**
+  - 使用 AssetRegistry 搜索 /Game 下的 UObjectRedirector
+  - 将搜索结果转换为 UObjectRedirector 对象
+  - 通过 AssetTools::FixupReferencers 修复 Redirector 引用，并处理 Redirector 删除
+- **Delete Empty Folders**
+  - 获取选中文件夹下的目录结构
+  - 排除特殊目录，并检查目录是否存在
+  - 修正原教程中 ture 等明显代码错误
+  - 针对原逻辑可能误删非空文件夹的问题，重新设计空文件夹判断逻辑
+  - 只有确认目录下不存在资产及子文件夹时，才执行 DeleteDirectory
+  - 删除前再次进行检查，降低递归删除导致误删的风险
+
+### 今日思考
+
+今天开始接触资产清理相关功能后，发现 Editor Tool 与普通游戏逻辑相比，对操作安全性的要求更高。
+
+尤其是在实现空文件夹清理时，原教程中的判断逻辑存在一定风险：“没有资产”并不等于“文件夹为空”。如果目录中仍然存在子文件夹，而后续调用的是递归删除接口，就可能将原本不应该删除的内容一并删除。
+
+因此，在保留教程整体实现思路的基础上，对这部分逻辑进行了调整，将“是否存在资产”和“是否真正为空”区分开，并在执行删除前再次进行检查。
+
+同时也进一步熟悉了 AssetRegistry、AssetTools、UEditorAssetLibrary 等 Editor API 在资产管理场景中的配合方式。
+
+> **开发耗时**：约 3 h
