@@ -115,3 +115,31 @@
 同时也进一步熟悉了 AssetRegistry、AssetTools、UEditorAssetLibrary 等 Editor API 在资产管理场景中的配合方式。
 
 > **开发耗时**：约 3 h
+
+---
+
+## Day 5（2026.09.16）
+
+### 今日完成
+
+开始学习 Editor Tool 的 Slate Widget 开发流程，开始将前面实现的 Content Browser 功能与自定义 Slate 界面连接起来。
+
+* 学习 UE5 Slate 中智能指针的基本使用方式，了解 TSharedPtr、TSharedRef、TWeakPtr 与 UObject GC 体系之间的区别
+* 创建 Advance Deletion 编辑器 Tab，并通过 FGlobalTabmanager 注册和唤起自定义 Nomad Tab
+* 创建 SAdvanceDeletionTab，继承 SCompoundWidget 构建自定义 Slate 界面
+* 使用 SVerticalBox、SHorizontalBox、STextBlock、SScrollBox 等 Slate 控件搭建基础界面
+* 使用 SListView 展示选中文件夹下的资产，并通过 STableRow 自定义列表项
+* 将前面获取的资产数据转换为 TSharedPtr<FAssetData>，传递给 Slate Widget 使用
+* 补充 Slate、SlateCore 等模块依赖，并完成基础编译与界面搭建
+
+### 今日思考
+
+今天开始真正接触 Slate 后，对 UE Editor Tool 的界面构建方式有了进一步认识。
+
+之前通过 EditorUtilityWidget 可以比较直观地完成工具原型，但当工具需要更复杂的编辑器界面和资产列表时，Slate 提供了更加灵活的实现方式。今天的 Advance Deletion 主要还是跟随教程完成基础结构，但已经开始理解 Editor Tab → Slate Widget → Asset Data → SListView 之间的数据和界面关系。
+
+同时也进一步认识到 UE 中智能指针与 UObject GC 并不是同一套内存管理机制。Slate 中大量使用 TSharedPtr / TSharedRef 管理非 UObject 类型对象，而编辑器资产本身仍然属于 UE 的 UObject 体系，需要根据对象类型选择合适的指针方式。
+
+目前完成的 Slate 界面仍属于基础版本，后续将继续学习 Slate Widget、Delegate、SListView 等内容，并逐步完善 Advance Deletion 工具的实际交互功能。
+
+> **开发耗时**：约 3.5 h
