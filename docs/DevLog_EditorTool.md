@@ -143,3 +143,30 @@
 目前完成的 Slate 界面仍属于基础版本，后续将继续学习 Slate Widget、Delegate、SListView 等内容，并逐步完善 Advance Deletion 工具的实际交互功能。
 
 > **开发耗时**：约 3.5 h
+
+---
+
+## Day 6（2026.09.17）
+
+### 今日完成
+
+继续学习 Editor Tool 的 Slate Widget 开发，进一步完善 Advance Deletion 编辑器工具，将前面获取到的资产数据接入 Slate 列表界面，并补充列表项的交互逻辑。
+
+- 将 Content Browser 中获取到的 FAssetData 数据保存到 StoredAssetsData，作为 SListView 的数据源
+- 使用 SListView 展示选中文件夹下的资产，并通过 STableRow 自定义每一行的显示内容
+- 为列表项添加 CheckBox，使工具能够记录用户选择的资产
+- 实现资产删除相关的交互逻辑，将 Slate 界面中的选择结果与前面的资产数据处理流程连接起来
+- 在资产操作完成后刷新列表，使界面状态与实际资产内容保持同步
+- 进一步熟悉 Slate 中数据 → ListView → TableRow → 控件交互的基本开发流程
+
+### 今日思考
+
+今天的学习让我对 Slate 的开发方式有了更具体的认识。
+
+之前主要是在学习如何创建 Editor Tab、构建基础 Slate 界面，以及如何获取 Content Browser 中的资产数据。到了今天，开始真正把这些部分串联起来：先获取 FAssetData，再保存为列表数据源，通过 SListView 创建列表，最后由 STableRow 负责具体的列表项显示和交互。
+
+相比 EditorUtilityWidget，Slate 的开发过程更加偏向“数据驱动 UI”。界面本身并不直接保存业务数据，而是通过 ItemsSource 等方式读取数据，再由列表和行控件生成对应的视觉内容。这种方式虽然学习成本更高，但也让我开始理解 UE 编辑器工具中数据、界面和交互之间如何进行解耦。
+
+目前 Advance Deletion 已经从最初的简单功能原型，逐渐发展成一个具有资产获取、列表展示、选择、删除和刷新流程的完整 Editor Tool 结构。后续将继续学习 Delegate、SListView 等相关内容，并进一步完善工具的交互功能。
+
+> **开发耗时**：约 4 h
