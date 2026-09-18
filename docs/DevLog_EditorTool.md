@@ -170,3 +170,37 @@
 目前 Advance Deletion 已经从最初的简单功能原型，逐渐发展成一个具有资产获取、列表展示、选择、删除和刷新流程的完整 Editor Tool 结构。后续将继续学习 Delegate、SListView 等相关内容，并进一步完善工具的交互功能。
 
 > **开发耗时**：约 4 h
+
+---
+
+## Day 7（2026.09.18）
+
+### 今日完成
+
+继续完成 Editor Tool 的 Slate Widget 开发，学习并实现 SComboBox、资产筛选、Content Browser 同步以及帮助文本等功能，并完成 Slate Widget 阶段的收尾工作。
+
+* 使用 SComboBox 构建资产列表筛选下拉菜单，实现全部资产、未使用资产、同名资产等不同列表条件
+* 将 StoredAssetsData 与 DisplayedAssetsData 分离，使原始资产数据与当前列表显示数据解耦
+* 实现未使用资产检测，通过 FindPackageReferencersForAsset 检查资产引用关系并筛选未被引用的资产
+* 使用 TMultiMap 根据 AssetName 查找同名资产，并将重复名称的资产统一加入显示列表
+* 完善资产删除后的数据同步与列表刷新，避免已经删除的资产继续存在于列表中
+* 实现点击列表项后同步 Content Browser，使工具中的资产列表与编辑器中的实际资产位置建立联动
+* 使用 STextBlock 构建下拉框说明和当前文件夹路径等帮助文本，并通过 SLATE_ARGUMENT 将外部参数传递给 Slate Widget
+* 学习使用 Widget Reflector 和 StarshipGallery 等 UE 编辑器现有 UI 实现作为 Slate 开发时的参考
+* 完成 Advance Deletion Tab 的注销逻辑，整理并结束 Slate Widget 阶段的学习内容
+
+### 今日思考
+
+今天主要完成了 Slate Widget 阶段最后一部分功能，也让我对前几天学习的内容有了一个比较完整的串联。
+
+从最开始创建 Editor Tab 和基础 Slate 界面，到 SListView、STableRow，再到今天的 SComboBox 和资产筛选，整个工具逐渐形成了比较完整的交互流程：
+
+**Content Browser 资产数据 → 数据存储 → Slate Widget → SListView → SComboBox 筛选 → 用户交互 → 资产操作 → Content Browser 同步。**
+
+今天也进一步认识到，Slate 的复杂度主要来自大量 C++ 类型、模板和回调关系。虽然目前还无法完全独立编写完整的 Slate Widget，但通过跟随完整工具项目的实现过程，已经能够理解主要控件的职责、数据传递方式以及各部分之间的连接关系。
+
+同时，今天接触到的 Widget Reflector 也让我意识到，学习 UE 编辑器开发并不一定要完全依赖从零编写代码。通过观察 UE 自身编辑器 UI 的实现，再结合源码进行定位，可以逐步理解复杂编辑器功能的实现方式。
+
+至此，Editor Tool 的 Slate Widget 学习阶段基本完成。后续将继续进入剩余的 Editor Tool 开发内容，并结合已经完成的功能逐步完善整个工具。
+
+> **开发耗时**：约 3 h
