@@ -204,3 +204,41 @@
 至此，Editor Tool 的 Slate Widget 学习阶段基本完成。后续将继续进入剩余的 Editor Tool 开发内容，并结合已经完成的功能逐步完善整个工具。
 
 > **开发耗时**：约 3 h
+
+---
+
+## Day 8（2026.09.19）
+
+### 今日完成
+
+继续完成 Editor Tool 教程中的编辑器扩展功能，主要学习并实现 Custom Editor Icons 与 Custom Hot Keys，进一步完善编辑器工具的交互方式。
+
+- 完成自定义 Editor Icon 的相关开发，学习使用 FSlateStyleSet 管理自定义 Slate 样式，并通过 FSlateStyleRegistry 注册与注销样式
+- 为 Editor Tool 的菜单项配置自定义 FSlateIcon，将自定义图标应用到编辑器菜单入口中
+- 在 Build.cs 中补充 Project 模块依赖，完善编辑器模块相关配置
+- 完善 Slate Style 的初始化与关闭逻辑，在工具结束时正确注销 Slate Style 并释放相关资源
+- 完成自定义 Editor Hot Key 的注册，学习使用 TCommands、UI_COMMAND 等机制定义编辑器快捷键
+- 将自定义快捷键绑定到对应功能，实现通过快捷键触发 Editor Tool 操作
+- 理解 LevelEditorModule.GetGlobalLevelEditorActions() 与全局 Editor Action 的关系，进一步认识 UE 编辑器快捷键的注册与绑定流程
+- 完善 Editor Tool 的 Tab 注册与注销逻辑，统一 AdvanceDeletion 相关命名，修正部分函数绑定与关闭逻辑中的细节问题
+- 对前面完成的 Editor Tool 内容进行整体串联，目前已经完成基础环境、Quick Asset Actions、Content Browser Menu、Slate Widget、Custom Editor Icons、Custom Hot Keys 等阶段
+
+### 今日思考
+
+今天的学习重点从 Slate 界面本身进一步延伸到了 Editor Tool 的交互与编辑器集成。
+
+前几天主要围绕 SListView、STableRow、SComboBox 等 Slate 控件完成工具界面与资产交互，而今天学习的自定义图标和快捷键，则进一步补充了工具在 UE 编辑器环境中的使用体验。
+
+其中，自定义图标部分让我进一步认识到，Slate 不只是用于构建工具界面，也参与了 UE 编辑器菜单、Tab 等 UI 元素的统一样式管理。通过 FSlateStyleSet 和 FSlateStyleRegistry 可以将自定义资源注册到编辑器中，再通过 FSlateIcon 应用到具体的菜单入口。
+
+快捷键部分则让我进一步理解了 UE Editor Action 的组织方式。通过 TCommands 定义命令，再将命令绑定到具体函数，最终连接到 Editor 的全局 Action 系统，可以让自定义工具与 UE 编辑器原有的交互体系结合起来。
+
+结合前几天的学习，目前整个 Editor Tool 的知识链条也更加完整：
+
+**Content Browser 资产数据 → Asset 操作 → 数据存储 → Slate Widget → SListView / SComboBox → 用户交互 → Editor Action → 自定义 Icon / Hot Key → 编辑器功能集成**
+
+这也让我更加明确，目前学习 Editor Tool 的重点并不是单纯记忆某个 API，而是理解一个编辑器工具从数据获取、界面构建、用户交互到编辑器集成的完整开发流程。
+
+目前教程主线已经进入最后阶段，后续将继续完成剩余内容，并在完成后对整个 Editor Tool 学习过程进行一次整体复盘和整理。
+
+> **开发耗时**：约 4 h
