@@ -242,3 +242,53 @@
 目前教程主线已经进入最后阶段，后续将继续完成剩余内容，并在完成后对整个 Editor Tool 学习过程进行一次整体复盘和整理。
 
 > **开发耗时**：约 4 h
+
+---
+
+## Day 9（2026.09.20）
+
+### 今日完成
+
+继续完成 Editor Tool 教程中的 Quick Actor Actions 与 Level Editor Menu 开发，进一步学习 UE 编辑器中对场景 Actor 的批量操作，以及通过 Level Editor 扩展自定义菜单和选择事件的开发流程。
+
+* 使用 UEditorActorSubsystem 获取和操作当前关卡中的 Actor，完成 Editor Actor Subsystem 的初始化与封装
+* 实现 Actor 批量选择功能，根据当前选中 Actor 的名称匹配场景中的其他 Actor，并统一进行选择
+* 使用 ESearchCase 控制名称匹配时是否区分大小写，并通过 Details View 将 C++ 属性暴露到 Editor Utility Widget 中
+* 实现 Actor 批量复制功能，支持设置复制数量、复制轴向以及复制间距，并在完成复制后同步选中生成的 Actor
+* 使用 UENUM 将复制轴向转换为可在编辑器中直接选择的配置项
+* 实现 Actor Transform 随机化功能，支持分别随机化 Yaw、Pitch、Roll，并通过 EditCondition 控制相关参数是否可编辑
+* 在 Transform 随机化基础上增加随机 Scale 与随机 Offset，使多个场景 Actor 可以快速产生一定程度的随机变化
+* 学习通过 FLevelEditorModule 获取 Level Editor，并使用菜单扩展机制向选中 Actor 的右键菜单中添加自定义功能
+* 使用 Delegate 将 Level Editor 菜单项与 C++ 函数绑定，实现 Actor Selection Lock / Unlock 的基础功能
+* 使用 USelection::SelectObjectEvent 监听编辑器中的 Actor 选择事件，并在 Actor 被选中时执行对应的处理逻辑
+* 使用 UEditorActorSubsystem 配合 Actor Tag 实现选择锁定：被锁定的 Actor 在再次被选择时会立即取消选择
+* 完善批量 Lock / Unlock 操作，并通过编辑器通知反馈当前处理结果
+* 将前面完成的 Custom Editor Icons 应用到 Level Editor 菜单项，为 Lock / Unlock 功能配置对应的自定义图标
+
+### 今日思考
+
+今天的学习内容相比前面的 Slate Widget 更进一步，从单纯构建 Editor Tool 的界面，开始真正接触编辑器场景数据与 Level Editor 本身的扩展。
+
+其中，UEditorActorSubsystem 是今天比较重要的一部分。通过 Subsystem 可以直接获取当前关卡中的 Actor，并进行选择、复制等操作，使 Editor Utility Widget 不再只是一个简单的 UI 界面，而能够真正参与到编辑器中的场景操作流程。
+
+Quick Actor Actions 中的几个功能也让我比较直观地认识到了编辑器工具的实际价值。例如批量选择、批量复制以及 Transform 随机化，本质上都是将原本需要开发者重复进行的编辑器操作进行自动化。对于场景搭建、关卡制作等工作而言，这类工具能够明显减少重复操作。
+
+今天的 Level Editor Menu 则进一步让我理解了 UE 编辑器扩展的另一种方式：除了独立的 Editor Utility Widget 之外，也可以直接对 Level Editor 的交互流程进行扩展。
+
+从：
+
+**Level Editor → Context Menu → Menu Entry → Delegate → C++ Function → Actor 操作**
+
+这一流程，可以将自定义工具功能直接融入 UE 原有的编辑器工作流。
+
+选择事件部分则让我进一步认识到 Editor Tool 不只是“点击按钮执行功能”，还可以监听编辑器中的状态变化。例如通过 SelectObjectEvent 监听 Actor 选择，再结合 Actor Tag 保存锁定状态，就可以实现类似“禁止选择指定 Actor”的编辑器功能。
+
+结合前几天的学习，目前 Editor Tool 的知识链条进一步扩展为：
+
+**Content Browser 资产数据 → Asset 操作 → Slate Widget → SListView / SComboBox → Editor Action → Hot Key → Level Editor Menu → Actor 操作 → Editor Event**
+
+这让我对 UE Editor Tool 的整体开发方式有了更加完整的认识：工具既可以围绕资产进行操作，也可以围绕场景中的 Actor 和编辑器交互流程进行扩展。
+
+目前 Quick Actor Actions 与 Level Editor Menu 阶段已经完成，后续将继续完成剩余的 Editor Tool 学习内容，并对整个工具开发过程进行整理和复盘。
+
+> **开发耗时**：约 4 h
