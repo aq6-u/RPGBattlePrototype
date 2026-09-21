@@ -292,3 +292,34 @@ Quick Actor Actions 中的几个功能也让我比较直观地认识到了编辑
 目前 Quick Actor Actions 与 Level Editor Menu 阶段已经完成，后续将继续完成剩余的 Editor Tool 学习内容，并对整个工具开发过程进行整理和复盘。
 
 > **开发耗时**：约 4 h
+
+---
+
+## Day 10（2026.09.21）
+
+### 今日完成
+
+继续完成 Editor Tool C++ 开发教程，学习 World Outliner 扩展与插件收尾相关内容，进一步完善此前实现的 Actor Selection Lock 工具，并完成插件的生命周期管理与打包流程。
+
++ 学习 Scene Outliner 模块的扩展方式，通过 ISceneOutlinerColumn 创建自定义 Outliner 列
++ 使用 SHeaderRow 构建自定义列标题，并通过 Slate Style Set 设置对应的图标与显示样式
++ 使用 ConstructRowWidget() 为 Outliner 中的 Actor 创建对应的 CheckBox 控件
++ 通过 FActorTreeItem 获取 Outliner 中对应的 Actor，并将此前实现的 Actor Selection Lock 功能接入 Outliner
++ 实现通过 CheckBox 直接锁定 / 解锁 Actor 选择状态，并在状态变化后刷新 Scene Outliner
++ 学习 Scene Outliner 自定义列的注册与注销流程，进一步理解 Editor Module 的生命周期管理
++ 完成 Editor Tool 教程中的 Extra Safe Guards，完善 Advance Deletion Tab 的状态管理与操作限制
++ 学习 UE5 插件的打包与跨项目使用流程，包括插件信息配置、Package、Binaries / Intermediate 清理以及在其他项目中重新编译插件
++ 了解 Blueprint Library、Editor Mode、Editor Standalone Window、Editor Toolbar Button 等不同插件父类的基本适用场景
++ 至此，除 Create Material 章节外，Editor Tool 教程的其他主要内容均已完成学习
+
+### 今日思考
+
+今天主要学习了 World Outliner 扩展，这部分让我进一步认识到 Editor Tool 不只是单独制作一个工具窗口，也可以直接扩展 UE 编辑器原有的工作界面和工作流程。
+
+通过 ISceneOutlinerColumn、FActorTreeItem、FSceneOutlinerModule 等内容，可以将自己实现的功能直接接入 Scene Outliner。结合之前学习的 Slate、Editor Subsystem、Delegate、Level Editor Menu 和快捷键等内容，逐渐能够看到不同 Editor API 之间是如何组合起来形成一个完整编辑器工具的。
+
+虽然目前自己还不能完全脱离教程独立编写这样的 Editor Tool，但相比最开始接触 UE C++ 编辑器代码时，对模块、Subsystem、Slate Widget、Delegate 以及编辑器扩展入口的理解已经明显更加熟悉。
+
+今天也基本完成了这一阶段 Editor Tool 教程的学习。后续会按照原计划进入下一阶段内容，并在之后的集中复习中重新整理这部分笔记，进一步加强对 UE Editor C++ 开发流程的理解。
+
+> **开发耗时**：约 3 h 
