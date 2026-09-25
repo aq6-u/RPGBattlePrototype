@@ -9,22 +9,24 @@
 
 项目实现了从 **输入 → Ability 激活 → AI 决策 → 技能执行 → 碰撞判定 → 伤害结算 → 战斗反馈 → 死亡/转阶段** 的完整战斗闭环。
 
-项目周期 **2026.07.25 - 09.06**，累计开发约 120h（V1.0 21天 + V1.1 4天 + V2.0 重构 2天）。每日开发日志完整记录。
+项目周期 **2026.07.25 - 2026.09.24**，累计开发约 170h+（V1.0 21天 + V1.1 4天 + V2.0 重构 2天 + Editor Tool 10天 + LLM+DDA 实验 3天）。
 
 **当前稳定版本**：V2.0。后续迭代目标见 [NEXT_STEPS.md](./docs/NEXT_STEPS.md)。
 
 
 ## 核心功能
 
-| 模块      | 内容                                                         |
-| :-------- | :----------------------------------------------------------- |
-| 玩家系统  | 四段连招、空中攻击、闪避（无敌帧）、完美闪避（回复资源）、E/Q 技能、鼠标中键锁定、鼠标滚轮放大缩小画面 |
-| Boss 系统 | 7 个技能（含转阶段解锁）、三段距离决策 AI、随机释放、CD 管理、转阶段演出 |
-| AI 决策   | 近/中/远距离技能组 → CD 筛选 → 随机选择 → 释放，全 CD 时主动接近兜底 |
-| 战斗反馈  | 伤害数字（30% 暴击）、CameraShake 分级、受击音效分级、受击粒子、BGM 切换 |
-| UI 系统   | 双层血条缓动、技能冷却、开始/死亡/胜利/暂停/操作说明界面     |
-| 数据驱动  | Excel → CSV → DataTable，Damage / Cost / Cooldown / CameraShake 全配置化 |
-| 工程记录  | 连续 DevLog（V1.0 + V1.1 + V2.0），完整踩坑复盘              |
+| 模块       | 内容                                                         |
+| :--------- | :----------------------------------------------------------- |
+| 玩家系统   | 四段连招、空中攻击、闪避（无敌帧）、完美闪避（回复资源）、E/Q 技能、鼠标中键锁定、鼠标滚轮放大缩小画面 |
+| Boss 系统  | 7 个技能（含转阶段解锁）、三段距离决策 AI、随机释放、CD 管理、转阶段演出 |
+| AI 决策    | 近/中/远距离技能组 → CD 筛选 → 随机选择 → 释放，全 CD 时主动接近兜底 |
+| 战斗反馈   | 伤害数字（30% 暴击）、CameraShake 分级、受击音效分级、受击粒子、BGM 切换 |
+| UI 系统    | 双层血条缓动、技能冷却、开始/死亡/胜利/暂停/操作说明界面     |
+| 数据驱动   | Excel → CSV → DataTable，Damage / Cost / Cooldown / CameraShake 全配置化 |
+| 工程记录   | 连续 DevLog（V1.0 / V1.1 / V2.0 / Editor Tool / LLM+DDA），完整踩坑复盘 |
+| 编辑器工具 | 资产批量操作、Content Browser 扩展、Slate 面板、Actor 批量操作、插件打包 |
+| AI 实验    | 五维玩家画像采集、LLM 决策链路、三组对照实验、安全回退机制   |
 
 
 ## 操作说明
@@ -45,17 +47,19 @@
 
 ## 技术栈
 
-| 领域             | 方案                                                 |
-| :--------------- | :--------------------------------------------------- |
-| 开发语言         | C++ + Blueprint                                      |
-| 战斗框架         | GAS（Gameplay Ability System）                       |
-| AI 框架          | Behavior Tree + Blackboard                           |
-| 属性系统         | C++ AttributeSet + GE                                |
-| 数据驱动         | Excel → CSV → DataTable                              |
-| 输入系统         | Enhanced Input                                       |
-| 动画系统         | Montage + Anim Notify State                          |
-| 攻击判定（玩家） | 武器碰撞体                                           |
-| 攻击判定（Boss） | Multi Sphere Trace + Box Trace（按技能配置检测形状） |
+| 领域             | 方案                                                         |
+| :--------------- | :----------------------------------------------------------- |
+| 开发语言         | C++ + Blueprint                                              |
+| 战斗框架         | GAS（Gameplay Ability System）                               |
+| AI 框架          | Behavior Tree + Blackboard                                   |
+| AI 集成          | LLM API 调用、JSON 校验、DDA 参数回退                        |
+| 属性系统         | C++ AttributeSet + GE                                        |
+| 数据驱动         | Excel → CSV → DataTable                                      |
+| 编辑器扩展       | C++ Editor Plugin、Asset Action Utility、Content Browser / Level Editor 菜单扩展、Slate Widget、Editor Subsystem、Scene Outliner 列扩展、自定义图标与快捷键 |
+| 输入系统         | Enhanced Input                                               |
+| 动画系统         | Montage + Anim Notify State                                  |
+| 攻击判定（玩家） | 武器碰撞体                                                   |
+| 攻击判定（Boss） | Multi Sphere Trace + Box Trace（按技能配置检测形状）         |
 
 
 ## 实机演示
@@ -63,21 +67,24 @@
 - **B站**：[V1.1 演示视频（在线）](https://www.bilibili.com/video/BV1knYx68E5M/)
 - **GitHub Release**：[V1.1 演示视频（下载）](https://github.com/aq6-u/RPGBattlePrototype/releases)
 - **阿里云盘**：[V1.1 演示视频（下载）](https://www.alipan.com/s/NcWjmQRJD9r)
+- **Editor Tool 演示视频（待录制，10 月）**
+- **AI 实验演示视频（待录制，10 月）**
 
 
 ## 文档索引
 
-| 文档                                                         | 说明                                 |
-| :----------------------------------------------------------- | :----------------------------------- |
-| [开发日志（DevLog_V1.0）](./docs/DevLog.md)                  | V1.0 阶段 Day 1-21 每日开发记录      |
-| [开发日志（DevLog_V1.1）](./docs/DevLog_V1.1.md)             | V1.1 阶段 Day 1-4 迭代修复记录       |
-| [开发日志（DevLog_V2.0）](./docs/DevLog_V2.0.md)             | V2.0 架构重构阶段每日开发记录        |
-| [开发日志（DevLog_EditorTool）](./docs/DevLog_EditorTool.md) | EditorTool 开发学习与实践记录        |
-| [开发日志（LLM_DDA）](./docs/DevLog_LLM_DDA.md)              | LLM + DDA 实验开发与验证记录         |
-| [项目开发总结](./docs/项目开发总结.md)                       | V2.0 完整总结，含设计意图说明        |
-| [性能观察报告](./docs/Demo性能观察报告.md)                   | V2.0 阶段 Demo 的性能基线分析        |
-| [迭代目标与结算](./docs/NEXT_STEPS.md)                       | 迭代结算与后续方向评估               |
-| [RPG 设计草案](./docs/RPG_Design_Draft.md)                   | 项目设计规格与系统架构（draft_v2.0） |
+| 文档                                                         | 说明                                         |
+| :----------------------------------------------------------- | :------------------------------------------- |
+| [开发日志（DevLog_V1.0）](./docs/DevLog.md)                  | V1.0 阶段 Day 1-21 每日开发记录              |
+| [开发日志（DevLog_V1.1）](./docs/DevLog_V1.1.md)             | V1.1 阶段 Day 1-4 迭代修复记录               |
+| [开发日志（DevLog_V2.0）](./docs/DevLog_V2.0.md)             | V2.0 架构重构阶段每日开发记录                |
+| [开发日志（DevLog_EditorTool）](./docs/DevLog_EditorTool.md) | EditorTool 开发学习与实践记录                |
+| [开发日志（LLM_DDA）](./docs/DevLog_LLM_DDA.md)              | LLM + DDA 实验开发与验证记录                 |
+| [AI 驱动动态难度调整（DDA）可行性验证报告](./docs/AI 驱动动态难度调整（DDA）可行性验证报告.md) | LLM + DDA 实验报告，含三组对照实验与工程指标 |
+| [项目开发总结](./docs/项目开发总结.md)                       | V2.0 完整总结，含设计意图说明                |
+| [性能观察报告](./docs/Demo性能观察报告.md)                   | V2.0 阶段 Demo 的性能基线分析                |
+| [迭代目标与结算](./docs/NEXT_STEPS.md)                       | 迭代结算与后续方向评估                       |
+| [RPG 设计草案](./docs/RPG_Design_Draft.md)                   | 项目设计规格与系统架构（draft_v2.0）         |
 
 
 ## 游戏拆解分析报告
@@ -108,4 +115,4 @@
 - **代码部分**：MIT License
 - **引擎美术/动画/音频素材**：版权归原权利人所有，本项目仅作个人学习与技术策划求职展示，不用于商业用途。
 
-**最后更新**：2026.09.06
+**最后更新**：2026.09.25
