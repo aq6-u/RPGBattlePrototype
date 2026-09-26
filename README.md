@@ -80,7 +80,7 @@
 | [开发日志（DevLog_V2.0）](./docs/DevLog_V2.0.md)             | V2.0 架构重构阶段每日开发记录                |
 | [开发日志（DevLog_EditorTool）](./docs/DevLog_EditorTool.md) | EditorTool 开发学习与实践记录                |
 | [开发日志（LLM_DDA）](./docs/DevLog_LLM_DDA.md)              | LLM + DDA 实验开发与验证记录                 |
-| [AI 驱动动态难度调整（DDA）可行性验证报告](./docs/AI 驱动动态难度调整（DDA）可行性验证报告.md) | LLM + DDA 实验报告，含三组对照实验与工程指标 |
+| [LLM 驱动动态难度调整（DDA）可行性验证报告](./docs/LLM_DDA_Feasibility_Report.md) | LLM + DDA 实验报告，含三组对照实验与工程指标 |
 | [项目开发总结](./docs/项目开发总结.md)                       | V2.0 完整总结，含设计意图说明                |
 | [性能观察报告](./docs/Demo性能观察报告.md)                   | V2.0 阶段 Demo 的性能基线分析                |
 | [迭代目标与结算](./docs/NEXT_STEPS.md)                       | 迭代结算与后续方向评估                       |
