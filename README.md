@@ -61,14 +61,18 @@
 | 攻击判定（玩家） | 武器碰撞体                                                   |
 | 攻击判定（Boss） | Multi Sphere Trace + Box Trace（按技能配置检测形状）         |
 
-
 ## 实机演示
 
-- **B站**：[V1.1 演示视频（在线）](https://www.bilibili.com/video/BV1knYx68E5M/)
-- **GitHub Release**：[V1.1 演示视频（下载）](https://github.com/aq6-u/RPGBattlePrototype/releases)
-- **阿里云盘**：[V1.1 演示视频（下载）](https://www.alipan.com/s/NcWjmQRJD9r)
-- **Editor Tool 演示视频（待录制，10 月）**
-- **AI 实验演示视频（待录制，10 月）**
+- **RPGBattlePrototype 演示视频（P1）**
+  - B站（在线）：[V1.1 演示视频](https://www.bilibili.com/video/BV1knYx68E5M/)
+  - GitHub Releases（下载）：[V1.1 演示视频](https://github.com/aq6-u/RPGBattlePrototype/releases)
+  - 阿里云盘（备用）：[V1.1 演示视频](https://www.alipan.com/s/NcWjmQRJD9r)
+
+- **Editor Tool 演示视频（P2）**
+  - B站（在线）：[EditorTool 演示视频](https://www.bilibili.com/video/BV1knYx68E5M/)
+
+- **LLM-Driven DDA 实验**
+  - 说明：该项目核心为后台数据链路与工程验证，无特殊视觉表现，故未录制视频。详细数据与结论见仓库 `DevLog_LLM_DDA.md`。
 
 
 ## 文档索引
@@ -115,4 +119,4 @@
 - **代码部分**：MIT License
 - **引擎美术/动画/音频素材**：版权归原权利人所有，本项目仅作个人学习与技术策划求职展示，不用于商业用途。
 
-**最后更新**：2026.09.25
+**最后更新**：2026.09.29
