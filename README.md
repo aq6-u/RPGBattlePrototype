@@ -25,7 +25,7 @@
 | UI 系统    | 双层血条缓动、技能冷却、开始/死亡/胜利/暂停/操作说明界面     |
 | 数据驱动   | Excel → CSV → DataTable，Damage / Cost / Cooldown / CameraShake 全配置化 |
 | 工程记录   | 连续 DevLog（V1.0 / V1.1 / V2.0 / Editor Tool / LLM+DDA），完整踩坑复盘 |
-| 编辑器工具 | 资产批量操作、Content Browser 扩展、Slate 面板、Actor 批量操作、插件打包 |
+| 编辑器工具 | 资产批量操作、Content Browser 扩展、Slate 面板、Actor 批量操作、插件打包（**[点击查看源码](./EditorTool/SuperManager/README.md)**） |
 | AI 实验    | 五维玩家画像采集、LLM 决策链路、三组对照实验、安全回退机制   |
 
 
@@ -77,18 +77,19 @@
 
 ## 文档索引
 
-| 文档                                                         | 说明                                         |
-| :----------------------------------------------------------- | :------------------------------------------- |
-| [开发日志（DevLog_V1.0）](./docs/DevLog.md)                  | V1.0 阶段 Day 1-21 每日开发记录              |
-| [开发日志（DevLog_V1.1）](./docs/DevLog_V1.1.md)             | V1.1 阶段 Day 1-4 迭代修复记录               |
-| [开发日志（DevLog_V2.0）](./docs/DevLog_V2.0.md)             | V2.0 架构重构阶段每日开发记录                |
-| [开发日志（DevLog_EditorTool）](./docs/DevLog_EditorTool.md) | EditorTool 开发学习与实践记录                |
-| [开发日志（LLM_DDA）](./docs/DevLog_LLM_DDA.md)              | LLM + DDA 实验开发与验证记录                 |
-| [LLM 驱动动态难度调整（DDA）可行性验证报告](./docs/LLM_DDA_Feasibility_Report.md) | LLM + DDA 实验报告，含三组对照实验与工程指标 |
-| [项目开发总结](./docs/项目开发总结.md)                       | V2.0 完整总结，含设计意图说明                |
-| [性能观察报告](./docs/Demo性能观察报告.md)                   | V2.0 阶段 Demo 的性能基线分析                |
-| [迭代目标与结算](./docs/NEXT_STEPS.md)                       | 迭代结算与后续方向评估                       |
-| [RPG 设计草案](./docs/RPG_Design_Draft.md)                   | 项目设计规格与系统架构（draft_v2.0）         |
+| 文档                                                         | 说明                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [开发日志（DevLog_V1.0）](./docs/DevLog.md)                  | V1.0 阶段 Day 1-21 每日开发记录                              |
+| [开发日志（DevLog_V1.1）](./docs/DevLog_V1.1.md)             | V1.1 阶段 Day 1-4 迭代修复记录                               |
+| [开发日志（DevLog_V2.0）](./docs/DevLog_V2.0.md)             | V2.0 架构重构阶段每日开发记录                                |
+| [开发日志（DevLog_EditorTool）](./docs/DevLog_EditorTool.md) | EditorTool 开发学习与实践记录                                |
+| [开发日志（LLM_DDA）](./docs/DevLog_LLM_DDA.md)              | LLM + DDA 实验开发与验证记录                                 |
+| [SuperManager 插件源码与说明](./EditorTool/SuperManager/README.md) | C++ Editor Plugin 源码，包含资产清理、Actor 批处理与快捷键扩展 |
+| [LLM 驱动动态难度调整（DDA）可行性验证报告](./docs/LLM_DDA_Feasibility_Report.md) | LLM + DDA 实验报告，含三组对照实验与工程指标                 |
+| [项目开发总结](./docs/项目开发总结.md)                       | V2.0 完整总结，含设计意图说明                                |
+| [性能观察报告](./docs/Demo性能观察报告.md)                   | V2.0 阶段 Demo 的性能基线分析                                |
+| [迭代目标与结算](./docs/NEXT_STEPS.md)                       | 迭代结算与后续方向评估                                       |
+| [RPG 设计草案](./docs/RPG_Design_Draft.md)                   | 项目设计规格与系统架构（draft_v2.0）                         |
 
 
 ## 游戏拆解分析报告
